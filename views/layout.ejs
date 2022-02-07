@@ -1,0 +1,21 @@
+<!-- section-categories -->
+<link href="/stylesheets/layout.css" rel="stylesheet" />
+<section class="categories container">
+  <h2 class="section-title">หมวดหมู่</h2>
+  <div class="categories-content">
+    <% categories.forEach(function(category){%>
+    <ul class="nav justify-content-center">
+      <a class="nav-link" href="/products/show/?category=<%=category.name%>"
+        ><%= category.name %></a
+      >
+      <%});%>
+      <a
+        href="/categories/add"
+        class="btn-addcategories"
+        style="text-decoration: none"
+      >
+        เพิ่มหมวดหมู่สินค้า</a
+      >
+    </ul>
+  </div>
+</section>

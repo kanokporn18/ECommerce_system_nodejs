@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- styltsheets -->
+    <link href="/stylesheets/products.css" rel="stylesheet" />
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <!-- box-icos -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>E-Commerce System</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <div class="nav container">
+        <div class="menu">
+          <a href="#" class="logo">E-Commerce System</a>
+          <div class="nav-menu">
+            <a href="/" class="menu-link">หน้าแรก</a>
+            <a href="/products/add" class="menu-link">จัดการสินค้า</a>
+          </div>
+        </div>
+        <a href="/products/cart"
+          ><i class="bx bx-shopping-bag" id="cart-icon"></i
+        ></a>
+      </div>
+    </header>
+    <!-- section-addproduct -->
+    <section class="form container">
+      <div class="form-content">
+        <h2>เพิ่มสินค้า</h2>
+        <% if(locals.errors){ %>
+        <ul class="alert alert-danger" role="alert">
+          <% Object.values(errors).forEach(function(error){ %>
+          <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+        <% } %>
+        <form action="/products/add" method="post">
+          <div class="form-group">
+            <label for="">ชื่อสินค้า</label>
+            <input type="text" name="name" id="" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="">รายละเอียด</label>
+            <textarea
+              name="description"
+              id=""
+              cols="30"
+              rows="10"
+              class="form-control"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="">ราคา</label>
+            <input
+              type="number"
+              name="price"
+              id=""
+              class="form-control"
+              min="1"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">หมวดหมู่สินค้า</label>
+            <select name="category" id="" class="form-control">
+              <% categories.forEach(function(category){%>
+              <option value="<%= category.name %>"><%= category.name %></option>
+              <%});%>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">ภาพสินค้า</label>
+            <input
+              type="url"
+              name="img"
+              id=""
+              class="form-control"
+              placeholder="ex. https://unsplash.com/photos/WiONHd_zYI4"
+            />
+          </div>
+          <input class="btn-addcategories" type="submit" value="บันทึกข้อมูล" />
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

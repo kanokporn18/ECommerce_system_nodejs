@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- styltsheets -->
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <!-- box-icos -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>E-Commerce System</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <div class="nav container">
+        <div class="menu">
+          <a href="#" class="logo">E-Commerce System</a>
+          <div class="nav-menu">
+            <a href="/" class="menu-link">หน้าแรก</a>
+            <a href="/products/add" class="menu-link">จัดการสินค้า</a>
+          </div>
+        </div>
+        <a href="/products/cart"
+          ><i class="bx bx-shopping-bag" id="cart-icon"></i
+        ></a>
+      </div>
+    </header>
+
+    <%- include('layout')%>
+    <!-- section-shop -->
+    <section class="shop container">
+      <h2 class="section-title">สินค้า</h2>
+      <div class="shop-content">
+        <% products.forEach(function(product){%>
+        <div class="product-box">
+          <img src="<%=product.img%>" alt="" class="product-img img-fluid" />
+          <h2 class="product-title">
+            <a href="/products/show/<%= product._id %>"><%= product.name %></a>
+          </h2>
+          <span class="price"><%=formatMoney(product.price)%> บาท</span>
+          <form class="form-group" action="/products/cart/" method="post">
+            <input type="hidden" name="product_id" value="<%=product._id%>" />
+            <i class="bx bx-shopping-bag add-cart"
+              ><input
+                style="
+                  font-family: 'Prompt', sans-serif;
+                  margin: 0px 5px;
+                  cursor: pointer;
+                "
+                type="submit"
+                value="เพิ่มไปยังรถเข็น"
+            /></i>
+          </form>
+        </div>
+        <%});%>
+      </div>
+    </section>
+  </body>
+</html>
